@@ -27,6 +27,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.time.format.TextStyle
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun drawer(
@@ -72,7 +73,6 @@ fun drawerItem(
 ){
     Row(
         modifier = Modifier
-            .shadow(13.dp)
             .fillMaxWidth()
             .height(56.dp)
             .padding(6.dp)

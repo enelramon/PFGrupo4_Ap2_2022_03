@@ -1,5 +1,6 @@
 package edu.ucne.quantumswap
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,6 +16,8 @@ import edu.ucne.quantumswap.ui.components.drawer
 import edu.ucne.quantumswap.ui.components.topBar
 import edu.ucne.quantumswap.ui.navigation.Destinations
 import edu.ucne.quantumswap.ui.navigation.navigationHost
+import edu.ucne.quantumswap.ui.Home.HomeScreen
+import edu.ucne.quantumswap.ui.Login.Login
 import edu.ucne.quantumswap.ui.theme.QuantumSwapTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,6 +38,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
@@ -45,7 +49,8 @@ fun MainScreen(
     )
     val scope = rememberCoroutineScope()
     val navigationItems = listOf(
-        Destinations.Home
+        Destinations.Home,
+        Destinations.LoginScreen
     )
 
     Scaffold(

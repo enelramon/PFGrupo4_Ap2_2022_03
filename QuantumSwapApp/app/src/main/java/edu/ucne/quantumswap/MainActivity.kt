@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import edu.ucne.quantumswap.ui.components.drawer
 import edu.ucne.quantumswap.ui.components.topBar
 import edu.ucne.quantumswap.ui.navigation.Destinations
@@ -20,11 +21,12 @@ import edu.ucne.quantumswap.ui.Home.HomeScreen
 import edu.ucne.quantumswap.ui.Login.Login
 import edu.ucne.quantumswap.ui.theme.QuantumSwapTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreen()
+           MainScreen()
 //            QuantumSwapTheme {
 //                // A surface container using the 'background' color from the theme
 //                Surface(

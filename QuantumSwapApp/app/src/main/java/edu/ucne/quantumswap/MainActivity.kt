@@ -1,5 +1,6 @@
 package edu.ucne.quantumswap
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -38,25 +39,26 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
 ){
     val navController = rememberNavController()
-    val scaffoldState = rememberScaffoldState(
+    /*val scaffoldState = rememberScaffoldState(
         drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    )
+    )*/
     val scope = rememberCoroutineScope()
     val navigationItems = listOf(
-        Destinations.Home
+        Destinations.Home,
+        Destinations.LoginScreen
     )
 
     Scaffold(
-        scaffoldState = scaffoldState,
+        /*scaffoldState = scaffoldState,
         topBar = { topBar(scope, scaffoldState) },
         drawerContent = { drawer(scope, scaffoldState, navController, items = navigationItems) },
-        drawerGesturesEnabled = true
+        drawerGesturesEnabled = true*/
     ) {
         navigationHost(navController)
     }

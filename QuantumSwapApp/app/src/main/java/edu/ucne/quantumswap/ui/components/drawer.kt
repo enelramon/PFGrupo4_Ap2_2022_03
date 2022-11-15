@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -35,18 +36,18 @@ fun drawer(
     items: List<Destinations>
 ){
     Column{
-        Image(
-            painter = painterResource(id = R.drawable.bg),
-            contentDescription = "Bg Image",
-            modifier = Modifier
-                .height(160.dp)
-                .fillMaxWidth(),
-            contentScale = ContentScale.FillWidth
-        )
+//        Image(
+//            painter = painterResource(id = R.drawable.bg),
+//            contentDescription = "Bg Image",
+//            modifier = Modifier
+//                .height(160.dp)
+//                .fillMaxWidth(),
+//            contentScale = ContentScale.FillWidth
+//        )
 
         Spacer(modifier = Modifier
             .fillMaxWidth()
-            .height(15.dp))
+            .height(60.dp))
 
         val currentRoute = currentRoute(navController)
         items.forEach { item ->
@@ -71,6 +72,7 @@ fun drawerItem(
 ){
     Row(
         modifier = Modifier
+            .shadow(13.dp)
             .fillMaxWidth()
             .height(56.dp)
             .padding(6.dp)

@@ -1,11 +1,9 @@
 package edu.ucne.quantumswap.data.remote
 
 import edu.ucne.quantumswap.data.remote.dto.LoginResponseDto
+import edu.ucne.quantumswap.data.remote.dto.ProductosDto
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
+import retrofit2.http.*
 
 interface QuantumSwapApi {
 
@@ -17,4 +15,13 @@ interface QuantumSwapApi {
 
     @PUT("users")
     suspend fun PutUsersAPI(@Body loginResponseDto: LoginResponseDto): Response<LoginResponseDto>
+
+    @GET("products")
+    suspend fun getListaProductos():List<ProductosDto>
+
+    @PUT("products")
+    suspend fun PutProductsApi(@Body productosDto: ProductosDto): Response<ProductosDto>
+
+    @DELETE("products/{Id}")
+    suspend fun DeleteProductsAPI(@Path("Id") Id: Int): Response<List<ProductosDto>>
 }

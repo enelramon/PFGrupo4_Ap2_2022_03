@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import edu.ucne.quantumswap.ui.Home.HomeScreen
+import edu.ucne.quantumswap.ui.Login.Login
 import edu.ucne.quantumswap.ui.theme.QuantumSwapTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     topBar = {CenterAlignedTopAppBar(title = {Text("Quantum Swap")})
                     },
                 ){
-                    HomeScreen()
+                    Login()
                 }
             }
         }

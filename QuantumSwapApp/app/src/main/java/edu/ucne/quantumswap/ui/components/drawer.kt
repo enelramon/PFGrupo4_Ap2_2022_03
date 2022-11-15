@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-/*import androidx.compose.material3.ScaffoldState*/
+import androidx.compose.material3.ScaffoldState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,7 +32,7 @@ import java.time.format.TextStyle
 @Composable
 fun drawer(
     scope: CoroutineScope,
-  /*  scaffoldState: ScaffoldState,*/
+    scaffoldState: ScaffoldState,
     navController: NavController,
     items: List<Destinations>
 ){
@@ -58,7 +58,7 @@ fun drawer(
                 }
 
                 scope.launch {
-                    /*scaffoldState.drawerState.close()*/
+                    scaffoldState.drawerState.close()
                 }
             }
         }
@@ -73,7 +73,6 @@ fun drawerItem(
 ){
     Row(
         modifier = Modifier
-            .shadow(13.dp)
             .fillMaxWidth()
             .height(56.dp)
             .padding(6.dp)

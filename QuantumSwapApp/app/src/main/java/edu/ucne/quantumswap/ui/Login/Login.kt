@@ -8,7 +8,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+
+
+import androidx.compose.material.*
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.ui.text.*
+import androidx.compose.material3.Text
+
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -55,9 +62,11 @@ fun Login() {
         Column (
             Modifier
                 .padding(0.dp)
-                .align(Alignment.CenterHorizontally)){
+                .align(Alignment.CenterHorizontally)
+        ){
             PintaTextfiel()
         }
+
         Spacer(modifier = Modifier.padding(16.dp))
 
         Button(
@@ -69,7 +78,7 @@ fun Login() {
             onClick = {
 
             },shape = RoundedCornerShape(12), colors = mainButtonColor
-        ) {
+        ){
 
             Text(text = "LOG IN")
 
@@ -77,6 +86,7 @@ fun Login() {
 
     }
 }
+
 
 @Composable
 fun PintaTextfiel()

@@ -1,6 +1,7 @@
 package edu.ucne.quantumswap
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.*
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import edu.ucne.quantumswap.ui.Home.HomeScreen
 import edu.ucne.quantumswap.ui.theme.QuantumSwapTheme
+import edu.ucne.quantumswap.R
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

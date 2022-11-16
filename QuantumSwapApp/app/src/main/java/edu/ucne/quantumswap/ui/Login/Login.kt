@@ -33,7 +33,7 @@ import edu.ucne.quantumswap.R
 fun MyIcon(modifier: Modifier =Modifier.padding(bottom = 30.dp))
 {
     Column(modifier = Modifier.padding(2.dp)) {
-        Image(painterResource(R.drawable.logo), contentDescription = "")
+        Image(painterResource(R.drawable.whitelogo), contentDescription = "")
     }
 
 }

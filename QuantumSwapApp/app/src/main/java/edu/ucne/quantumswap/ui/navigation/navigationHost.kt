@@ -7,8 +7,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import edu.ucne.quantumswap.ui.Login.Login
-import edu.ucne.quantumswap.ui.ShoppingCart.ShoppingCart
 import edu.ucne.quantumswap.ui.ShoppingCart.ShoppingCartMain
+import edu.ucne.quantumswap.ui.Store.StoreScreen
 import edu.ucne.quantumswap.ui.navigation.Destinations.*
 
 @Composable
@@ -17,7 +17,7 @@ fun navigationHost(
 ) {
     NavHost(navController = navController, startDestination = Home.route){
         composable(Home.route){
-            Text("Esta es la pantalla Home")
+            StoreScreen()
         }
         composable(LoginScreen.route){
             Login()

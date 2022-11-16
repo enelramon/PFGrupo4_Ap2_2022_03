@@ -28,41 +28,43 @@ import androidx.compose.ui.text.font.FontWeight
 fun ShoppingCartMain() {
     Scaffold(
     ) {
-        ShoppingCart()
-        Box(modifier = Modifier
-            .padding(top = 650.dp)
-            .fillMaxWidth()
-            .height(80.dp)
-        )
-        {
-            Text(
-                text = "Full Payment $50,000.00",
-                modifier = Modifier.padding(top = 20.dp, start = 260.dp),
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.ExtraBold
-            )
-
-            val mainButtonColor = ButtonDefaults.buttonColors(
-                containerColor = Color(0,0,0),
-                contentColor = Color.White
-            )
-
-            Button(
-                modifier = Modifier
-                    .padding(top = 20.dp, start = 20.dp)
-                    .width(160.dp)
-                ,
-                onClick = { /*TODO*/ },
-                shape = RoundedCornerShape(10),
-                colors = mainButtonColor
-
+        Column() {
+            ShoppingCart()
+            Box(modifier = Modifier
+                .padding(top = 0.dp)
+                .fillMaxWidth()
+                .height(80.dp)
             )
             {
                 Text(
-                    text = "Comprar (1)",
-                    color = Color.White,
-                    style = MaterialTheme.typography.titleMedium
+                    text = "Full Payment $50,000.00",
+                    modifier = Modifier.padding(top = 20.dp, start = 260.dp),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.ExtraBold
                 )
+
+                val mainButtonColor = ButtonDefaults.buttonColors(
+                    containerColor = Color(0,0,0),
+                    contentColor = Color.White
+                )
+
+                Button(
+                    modifier = Modifier
+                        .padding(top = 20.dp, start = 20.dp)
+                        .width(160.dp)
+                    ,
+                    onClick = { /*TODO*/ },
+                    shape = RoundedCornerShape(10),
+                    colors = mainButtonColor
+
+                )
+                {
+                    Text(
+                        text = "Comprar (1)",
+                        color = Color.White,
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                }
             }
         }
     }

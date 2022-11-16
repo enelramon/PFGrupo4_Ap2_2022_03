@@ -48,7 +48,7 @@ fun Login() {
     )
 
     Column(
-        modifier = Modifier
+        modifier = Modifier,
 
     ) {
         Column(Modifier.padding(100.dp)) {

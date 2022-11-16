@@ -1,6 +1,6 @@
-package edu.ucne.quantumswap.data.remote.dto
+package edu.ucne.quantumswap.data.remote.DTO
 
-data class ProductosDto (
+data class ProductDTO (
     val ProductId:Int,
     val CategoryId:Int,
     val SectionId:Int,
@@ -12,4 +12,4 @@ data class ProductosDto (
     val Price:Int,
     val Discount:Int,
     val Image:String,
-        )
+)

@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import edu.ucne.quantumswap.data.remote.QuantumSwapApi
+import edu.ucne.quantumswap.data.remote.QuantumSwapAPI
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -14,6 +14,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
     @Singleton
     @Provides
     fun provideMoshi(): Moshi {
@@ -22,13 +23,15 @@ object AppModule {
             .add(KotlinJsonAdapterFactory())
             .build()
     }
+
     @Singleton
     @Provides
-    fun providesQuantumSwapApi(moshi: Moshi): QuantumSwapApi {
+    fun providesQuantumSwapApi(moshi: Moshi): QuantumSwapAPI {
         return Retrofit.Builder()
             .baseUrl("https://quantumswap.herokuapp.com/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
-            .create(QuantumSwapApi::class.java)
+            .create(QuantumSwapAPI::class.java)
     }
+
 }

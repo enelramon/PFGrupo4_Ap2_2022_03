@@ -50,7 +50,8 @@ fun MainScreen(
     val scope = rememberCoroutineScope()
     val navigationItems = listOf(
         Destinations.Home,
-        Destinations.LoginScreen
+        Destinations.LoginScreen,
+        Destinations.ShoppingCart
     )
 
     Scaffold(

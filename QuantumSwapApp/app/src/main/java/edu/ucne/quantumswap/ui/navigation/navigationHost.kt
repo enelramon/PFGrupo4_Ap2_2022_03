@@ -7,6 +7,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import edu.ucne.quantumswap.ui.Login.Login
+import edu.ucne.quantumswap.ui.ShoppingCart.ShoppingCart
+import edu.ucne.quantumswap.ui.ShoppingCart.ShoppingCartMain
 import edu.ucne.quantumswap.ui.navigation.Destinations.*
 
 @Composable
@@ -19,6 +21,9 @@ fun navigationHost(
         }
         composable(LoginScreen.route){
             Login()
+        }
+        composable(ShoppingCart.route){
+            ShoppingCartMain()
         }
     }
 }

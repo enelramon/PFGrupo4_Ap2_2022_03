@@ -11,5 +11,5 @@ sealed class Destinations(
     val icon: ImageVector
 ){
     object Home: Destinations("Home", "Home", Icons.Filled.Home)
-    object LoginScreen: Destinations("LoginScreen", "Login", Icons.Filled.Person)
+    object LoginScreen: Destinations("Login", "Login", Icons.Filled.Person)
 }

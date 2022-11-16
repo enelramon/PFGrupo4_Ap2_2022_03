@@ -25,7 +25,7 @@ fun HomeScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Column(modifier = Modifier.padding(60.dp)) {
-            Image(painterResource(R.drawable.ic_gatologo), contentDescription = "")
+            Image(painterResource(R.drawable.logo), contentDescription = "")
         }
 
         Text(

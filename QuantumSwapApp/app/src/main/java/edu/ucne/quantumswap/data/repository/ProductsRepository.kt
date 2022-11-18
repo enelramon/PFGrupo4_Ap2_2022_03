@@ -10,6 +10,8 @@ class ProductsRepository @Inject constructor(
 
     suspend fun getAllProducts() = API.getAllProducts()
 
+    suspend fun GetFind(Id: Int) = API.GetFind(Id)
+
     suspend fun putProduct(response: ProductDTO) = API.putProduct(response)
 
     suspend fun deleteProduct(Id:Int) = API.deleteProduct(Id)

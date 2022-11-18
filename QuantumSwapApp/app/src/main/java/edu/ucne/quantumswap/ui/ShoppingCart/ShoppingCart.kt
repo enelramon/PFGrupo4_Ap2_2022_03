@@ -4,10 +4,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import edu.ucne.quantumswap.R
@@ -17,145 +17,184 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Alignment
-import androidx.compose.material3.ElevatedButton
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.runtime.*
 import androidx.compose.ui.text.font.FontWeight
+import edu.ucne.quantumswap.data.remote.DTO.ProductDTO
 
 
 @Preview(showSystemUi = true)
 @Composable
-fun ShoppingCartMain() {
-    Scaffold(
-    ) {
-        Column() {
-            ShoppingCart()
-            Box(modifier = Modifier
-                .padding(top = 0.dp)
-                .fillMaxWidth()
-                .height(80.dp)
-            )
-            {
-                Text(
-                    text = "Full Payment $50,000.00",
-                    modifier = Modifier.padding(top = 20.dp, start = 260.dp),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.ExtraBold
-                )
+fun ShoppingCartMain(
+    viewModel: ShoppingCartViewModel = hiltViewModel()
+) {
+    val mainButtonColor = ButtonDefaults.buttonColors(
+        containerColor = Color(0,0,0),
+        contentColor = Color.White
 
-                val mainButtonColor = ButtonDefaults.buttonColors(
-                    containerColor = Color(0,0,0),
-                    contentColor = Color.White
-                )
+    )
+
+    val producto: Int = 10
+    var Cant: Int = 10
+    Scaffold(
+        bottomBar = {
+            BottomAppBar(
+               backgroundColor = Color.White,
+                elevation = 50.dp
+            ) {
+
 
                 Button(
                     modifier = Modifier
-                        .padding(top = 20.dp, start = 20.dp)
-                        .width(160.dp)
+                        .background(Color.Blue)
+                        .height(40.dp)
+                        .width(150.dp)
+//                        .shadow(4.dp)
                     ,
-                    onClick = { /*TODO*/ },
                     shape = RoundedCornerShape(10),
-                    colors = mainButtonColor
-
-                )
-                {
+                   colors = mainButtonColor,
+                    onClick = { /*TODO*/ }
+                ) {
                     Text(
-                        text = "Comprar (1)",
-                        color = Color.White,
-                        style = MaterialTheme.typography.titleMedium
+                        text = "Comprar (${producto})",
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.ExtraBold
                     )
                 }
+
+                Text(
+                    text = "Full Payment: 50000",
+                    modifier = Modifier.padding(start = 60.dp),
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.ExtraBold
+                )
             }
+        }
+    ) {
+        Column {
+            val uiState by viewModel.uiSate.collectAsState()
+            ShoppingCart(
+                product = uiState.product,
+                cant = Cant
+            )
+
         }
     }
 }
 
 @Composable
-fun ShoppingCart() {
+fun ShoppingCart(
+    product: List<ProductDTO>,
+    cant: Int
+) {
+    LazyColumn(modifier = Modifier.fillMaxSize()){
+        items(product){Product ->
 
-    Card(
-        elevation = 16.dp,
-        modifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth()
-    ) {
-        Column(modifier = Modifier.padding(5.dp)) {
+            var selecionar by remember {
+                mutableStateOf(false)
+            }
 
-            Row(modifier = Modifier.padding(0.dp, 5.dp)) {
+            Card(
+                elevation = 16.dp,
+                modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxWidth()
+            ) {
+                Column(modifier = Modifier.padding(0.dp)) {
 
-                Box(modifier = Modifier
-                    .padding(5.dp)
-                    .width(120.dp)
-                    .height(120.dp)
-                    .background(Color.DarkGray)){
-                    Image(painterResource(R.drawable.logo), contentDescription = "")
-                }
+                    Row(modifier = Modifier.padding(0.dp, 0.dp)) {
 
-                Row(modifier = Modifier.padding(20.dp)) {
-                    Box(modifier = Modifier
-                        .width(30.dp)
-                        .height(30.dp)
-                        .border(0.5.dp, Color.Blue)
-                    ){
+                        Checkbox(
+                            checked = selecionar,
+                            onCheckedChange = {selecionar = !selecionar }
+                        )
 
-                        IconButton(onClick = { /*TODO*/ }) {
-                            Image(painterResource(R.drawable.ic_baseline_horizontal_rule_24), contentDescription = "")
-                        }
-
-                    }
-
-                    Box(
-                        modifier = Modifier
-                            .width(30.dp)
-                            .height(30.dp)
-                            .border(0.5.dp, Color.Blue)
-                    ){
-
-                        IconButton(onClick = { /*TODO*/ }) {
-                            Text(
-                                text = "1",
-                                style = MaterialTheme.typography.titleMedium
+                        Box(modifier = Modifier
+                            .padding(0.dp)
+                            .width(120.dp)
+                            .height(120.dp)
+                        ){
+                            AsyncImage(
+                                model = Product.Image,
+                                contentDescription = "${Product.Description}"
                             )
                         }
 
-                    }
+                        Row(modifier = Modifier.padding(10.dp)) {
 
-                    Box(modifier = Modifier
-                        .width(30.dp)
-                        .height(30.dp)
-                        .border(0.5.dp, Color.Blue)
-                    ){
+                            //Restar Cantidad
+                            Box(modifier = Modifier
+                                .width(30.dp)
+                                .height(30.dp)
+                                .border(0.5.dp, Color.Blue)
+                            ){
 
-                        IconButton(onClick = { /*TODO*/ }) {
-                            Image(painterResource(R.drawable.ic_baseline_add_24), contentDescription = "")
+                                IconButton(onClick = {  }) {
+                                    Image(painterResource(R.drawable.ic_baseline_horizontal_rule_24), contentDescription = "")
+                                }
+
+                            }
+
+                            Box(
+                                modifier = Modifier
+                                    .width(30.dp)
+                                    .height(30.dp)
+                                    .border(0.5.dp, Color.Blue)
+                            ){
+
+                                IconButton(onClick = {  }) {
+                                    Text(
+                                        text = "${cant}",
+                                        style = MaterialTheme.typography.titleMedium
+                                    )
+                                }
+
+                            }
+
+                            //Sumar Cantidad
+                            Box(modifier = Modifier
+                                .width(30.dp)
+                                .height(30.dp)
+                                .border(0.5.dp, Color.Blue)
+                            ){
+
+                                IconButton(onClick = {  }) {
+                                    Image(painterResource(R.drawable.ic_baseline_add_24), contentDescription = "")
+                                }
+
+                            }
+
+                            Box(modifier = Modifier
+                                .padding(15.dp)
+                                .width(300.dp)
+                                .height(20.dp)
+                            ){
+
+                                Text(
+                                    text = "$ ${Product.Price}",
+                                    style = MaterialTheme.typography.titleMedium
+                                )
+                            }
                         }
 
                     }
 
-                    Box(modifier = Modifier
-                        .padding(20.dp)
-                        .width(300.dp)
-                        .height(20.dp)
-                    ){
-
-                        Text(
-                            text = "$50,000",
-                            style = MaterialTheme.typography.titleMedium
-                        )
+                    IconButton(
+                        onClick = { /*TODO*/ },
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    ) {
+                        Text(text = "Remover")
                     }
                 }
 
             }
-
-            IconButton(
-                onClick = { /*TODO*/ },
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            ) {
-                Text(text = "Remover")
-            }
         }
-
     }
+
 }
 
 

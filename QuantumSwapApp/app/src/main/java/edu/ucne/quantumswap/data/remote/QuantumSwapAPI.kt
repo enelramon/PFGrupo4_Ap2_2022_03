@@ -7,8 +7,12 @@ import retrofit2.http.*
 
 interface QuantumSwapAPI{
 
+    //Productos
     @GET("products")
     suspend fun getAllProducts():List<ProductDTO>
+
+    @GET("products/{Id}")
+    suspend fun GetFind(@Path("Id") Id: Int):List<ProductDTO>
 
     @PUT("products")
     suspend fun putProduct(@Body ProductDTO: ProductDTO): Response<ProductDTO>
@@ -16,6 +20,7 @@ interface QuantumSwapAPI{
     @DELETE("products/{Id}")
     suspend fun deleteProduct(@Path("Id") Id: Int): Response<List<ProductDTO>>
 
+    //Usuarios
     @GET("users")
     suspend fun getAllUsers():List<UserDTO>
 

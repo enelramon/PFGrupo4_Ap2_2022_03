@@ -5,6 +5,7 @@ buildscript {
         lifecycle_runtime="2.3.1"
         coroutines_version="1.6.1"
         retrofit_version="2.9.0"
+        room_version = "2.4.2"
     }
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"

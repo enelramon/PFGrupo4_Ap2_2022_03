@@ -10,6 +10,7 @@ import edu.ucne.quantumswap.ui.login.Login
 import edu.ucne.quantumswap.ui.ShoppingCart.ShoppingCartMain
 import edu.ucne.quantumswap.ui.Store.StoreScreen
 import edu.ucne.quantumswap.ui.navigation.Destinations.*
+import edu.ucne.quantumswap.ui.sign.SignIn
 
 @Composable
 fun navigationHost(
@@ -24,6 +25,10 @@ fun navigationHost(
         }
         composable(ShoppingCart.route){
             ShoppingCartMain()
+        }
+
+        composable(SignInScreen.route){
+            SignIn(onClick = { navController.navigate(LoginScreen.route) })
         }
     }
 }

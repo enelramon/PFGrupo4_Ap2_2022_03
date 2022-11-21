@@ -26,7 +26,7 @@ interface QuantumSwapAPI{
     suspend fun getAllUsers():List<UserDTO>
 
     @PUT("users")
-    suspend fun saveUser(@Body UserDTO: UserDTO): Response<UserDTO>
+    suspend fun SignUser(@Body UserDTO: UserDTO): Response<UserDTO>
 
     @POST("users/login")
     suspend fun loginUserWithEmail(@Body loginDto: LoginDto): LoginDto

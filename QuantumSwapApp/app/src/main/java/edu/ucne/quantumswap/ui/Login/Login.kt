@@ -1,114 +1,216 @@
 package edu.ucne.quantumswap.ui.Login
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.LocalTextSelectionColors
+import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 
 
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.rounded.Lock
+import androidx.compose.material.icons.rounded.Send
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.ui.text.*
 import androidx.compose.material3.Text
+import androidx.compose.runtime.*
 
 
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.input.*
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import edu.ucne.quantumswap.R
 
 @OptIn(ExperimentalMaterial3Api::class)
+@Preview(showBackground = true)
 @Composable
-fun MyIcon(modifier: Modifier =Modifier.padding(bottom = 30.dp))
-{
-    Column(modifier = Modifier.padding(2.dp)) {
-        Image(painterResource(R.drawable.whitelogo), contentDescription = "")
+fun CustomInputField(
+    type: String = "uid",
+    inputValue: MutableState<String> = remember {
+        mutableStateOf("")
+    },
+    modifier: Modifier = Modifier,
+    iconColor: MutableState<Color> = remember {
+        mutableStateOf(Color(0xFF47A4EE))
+    },
+    seePasswordToggle: MutableState<Boolean> = remember {
+        mutableStateOf(false)
     }
+) {
 
+    val focusRequester = FocusRequester()
+    val customTextSelectionColors = TextSelectionColors(
+        handleColor = Color(0xFF1976D2),
+        backgroundColor = Color(0xFF1976D2)
+    )
+    val rippleColor = rememberRipple(color = Color(0xFF39C1D3))
+
+    CompositionLocalProvider(
+        LocalTextSelectionColors provides customTextSelectionColors,
+        LocalIndication provides rippleColor
+    ) {
+        OutlinedTextField(
+            value = inputValue.value,
+            onValueChange = { inputValue.value = it },
+            modifier = modifier
+                .height(72.dp)
+                .focusRequester(focusRequester)
+                .onFocusChanged {
+                    iconColor.value = if (it.isFocused) Color(0xFF1976D2)
+                    else Color(0xFFC9C9C9)
+                },
+            label = {
+                if (type == "uid")
+                    Text(text = "Email Address*")
+                else
+                    Text(text = "Password*")
+            },
+            shape = RoundedCornerShape(25.dp),
+            singleLine = true,
+            colors = TextFieldDefaults
+                .outlinedTextFieldColors(
+                    unfocusedBorderColor = Color(0xFFC9C9C9),
+                    focusedBorderColor = Color(0xFF1976D2),
+                    leadingIconColor = iconColor.value,
+                    trailingIconColor = iconColor.value,
+                    cursorColor = Color(0xFF1976D2),
+                    focusedLabelColor = Color(0xFF1976D2)
+                ),
+
+        )
+    }
 }
 
+@Composable
+fun GradientButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    textColor: Color,
+    gradient: Brush,
+    onClick: () -> Unit
+) {
+    Button(
+        colors = ButtonDefaults.buttonColors(Color.Transparent),
+        contentPadding = PaddingValues(),
+        onClick = { onClick() },
+        modifier = modifier.height(48.dp),
+        shape = RoundedCornerShape(40.dp),
+        elevation = ButtonDefaults.elevatedButtonElevation(defaultElevation = 10.dp, pressedElevation = 5.dp)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxHeight()
+                .background(gradient)
+                .padding(horizontal = 32.dp, vertical = 8.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = text,
+                color = textColor
+            )
+        }
+    }
+}
 
 @Composable
 fun Login() {
-
-    val mainButtonColor = ButtonDefaults.buttonColors(
-        containerColor = androidx.compose.ui.graphics.Color(25,118,210),
-        contentColor = Color.White
-    )
-
-    Column(
-        modifier = Modifier,
-
-    ) {
-        Column(Modifier.padding(100.dp)) {
-            MyIcon(
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .size(20.dp)
-            )
-
+    Surface(modifier = Modifier.fillMaxSize()) {
+        val inputValueID = remember {
+            mutableStateOf("")
         }
-        Column (
-            Modifier
-                .padding(0.dp)
-                .align(Alignment.CenterHorizontally)
-        ){
-            PintaTextfiel()
+        val inputValuePass = remember {
+            mutableStateOf("")
         }
-
-        Spacer(modifier = Modifier.padding(16.dp))
-
-        Button(
+        Column(
             modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .height(60.dp)
-                .shadow(4.dp)
-                .width(300.dp),
-            onClick = {
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-            },shape = RoundedCornerShape(12), colors = mainButtonColor
-        ){
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(360.dp)
+                    .clip(
+                        shape = RoundedCornerShape(
+                            bottomStart = 25.dp,
+                            bottomEnd = 25.dp
+                        )
+                    )
+                    .background(
+                        brush = Brush.radialGradient(
+                            colors = listOf(
+                                Color(0xFF1976D2),
+                                Color(0xFF000000)
+                            ),
+                            radius = 415f
+                        )
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Image(
+                    modifier = Modifier
+                        .size(280.dp)
+                        .offset(y = (-20.dp)),
+                    painter = painterResource(id = R.drawable.logo),
+                    contentDescription = "Background Image"
+                )
+            }
 
-            Text(text = "LOG IN")
+            Card(
+                modifier = Modifier
+                    .offset(y = -20.dp)
+                    .width(290.dp),
+                shape = RoundedCornerShape(25.dp),
+                elevation = 15.dp
+            ) {
+                Column(
+                    modifier = Modifier
+                        .padding(horizontal = 30.dp)
+                        .padding(top = 30.dp, bottom = 50.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(text = "LOG IN", modifier = Modifier.padding(bottom = 16.dp))
+                    CustomInputField(inputValue = inputValueID, type = "uid")
+                    CustomInputField(inputValue = inputValuePass, type = "password")
+                }
+            }
+
+
+            GradientButton(
+                modifier = Modifier.offset(y = -50.dp),
+                text = "Log in",
+                textColor = Color.White,
+                gradient = Brush.horizontalGradient(
+                    listOf(
+                        Color(0xFF99B0C2),
+                        Color(0xFF1976D2),
+                        Color(0xFF1976D2)
+                    )
+                )
+            ) {
+
+            }
 
         }
-
     }
 }
-
-
-@Composable
-fun PintaTextfiel()
-{
-    OutlinedTextField(
-        modifier = Modifier
-            .height(60.dp)
-            .width(300.dp),
-        value = "",
-        label = { Text(text = "Email Address*")},
-        onValueChange = {""},
-        shape = CutCornerShape(5),
-    )
-    Spacer(modifier = Modifier.padding(16.dp))
-    OutlinedTextField(
-        modifier = Modifier
-            .height(60.dp)
-            .width(300.dp),
-        value = "",
-        label = { Text(text = "Password*")},
-        onValueChange = {""},
-        shape = CutCornerShape(5),
-    )
-}
-

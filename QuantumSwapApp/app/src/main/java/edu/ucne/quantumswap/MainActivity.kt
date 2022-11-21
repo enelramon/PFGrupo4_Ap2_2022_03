@@ -18,7 +18,6 @@ import edu.ucne.quantumswap.ui.components.topBar
 import edu.ucne.quantumswap.ui.navigation.Destinations
 import edu.ucne.quantumswap.ui.navigation.navigationHost
 import edu.ucne.quantumswap.ui.Home.HomeScreen
-import edu.ucne.quantumswap.ui.Login.Login
 import edu.ucne.quantumswap.ui.theme.QuantumSwapTheme
 
 @AndroidEntryPoint

@@ -6,10 +6,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,7 +36,8 @@ import coil.compose.rememberAsyncImagePainter
 @OptIn( ExperimentalMaterial3Api::class)
 @Composable
 fun StoreScreen(
-    viewModel: StoreViewModel = hiltViewModel()
+    viewModel: StoreViewModel = hiltViewModel(),
+    onClick: () -> Unit,
 ){
     Scaffold() {
 
@@ -59,13 +64,31 @@ fun StoreScreen(
                             contentDescription = product.Description,
                             title = product.Description
                         )
+                        Button(onClick = { viewModel.AddShoppingCart(
+                            product.ProductId,
+                            product.Description,
+                            product.Price,
+                            product.Image
+                        )
+
+                            onClick()
+
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.ShoppingCart,
+                                contentDescription = "Add ShoppingCart"
+                            )
+                        }
                     }
+
                     Divider(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 4.dp),
                         color = Color.White
                     )
+
+
                 }
             }
         }
@@ -85,7 +108,9 @@ fun ImageCard(
         elevation = 5.dp
 
     ){
-        Box(modifier = Modifier.height(200.dp).fillMaxSize()){
+        Box(modifier = Modifier
+            .height(200.dp)
+            .fillMaxSize()){
             Image(
                 painter = painter,
                 contentDescription = contentDescription,

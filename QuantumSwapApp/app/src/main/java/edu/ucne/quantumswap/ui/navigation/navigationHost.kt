@@ -17,7 +17,7 @@ fun navigationHost(
 ) {
     NavHost(navController = navController, startDestination = Home.route){
         composable(Home.route){
-            StoreScreen()
+            StoreScreen(onClick = { navController.navigate(ShoppingCart.route) })
         }
         composable(LoginScreen.route){
             Login()

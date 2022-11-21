@@ -24,6 +24,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.text.font.FontWeight
+import edu.ucne.quantumswap.data.local.entity.Product
 import edu.ucne.quantumswap.data.remote.DTO.ProductDTO
 
 
@@ -88,8 +89,9 @@ fun ShoppingCartMain(
 
 @Composable
 fun ShoppingCart(
-    product: List<ProductDTO>,
-    cant: Int
+    product: List<Product>,
+    cant: Int,
+    viewModel: ShoppingCartViewModel = hiltViewModel()
 ) {
     LazyColumn(modifier = Modifier.fillMaxSize()){
         items(product){Product ->
@@ -104,14 +106,14 @@ fun ShoppingCart(
                     .padding(10.dp)
                     .fillMaxWidth()
             ) {
-                Column(modifier = Modifier.padding(0.dp)) {
+                Column(modifier = Modifier.padding(top = 10.dp, start = 3.dp)) {
 
                     Row(modifier = Modifier.padding(0.dp, 0.dp)) {
 
-                        Checkbox(
-                            checked = selecionar,
-                            onCheckedChange = {selecionar = !selecionar }
-                        )
+//                        Checkbox(
+//                            checked = selecionar,
+//                            onCheckedChange = {selecionar = !selecionar }
+//                        )
 
                         Box(modifier = Modifier
                             .padding(0.dp)
@@ -184,7 +186,7 @@ fun ShoppingCart(
                     }
 
                     IconButton(
-                        onClick = { /*TODO*/ },
+                        onClick = { viewModel.Delete(Product) },
                         modifier = Modifier.align(Alignment.CenterHorizontally)
                     ) {
                         Text(text = "Remover")

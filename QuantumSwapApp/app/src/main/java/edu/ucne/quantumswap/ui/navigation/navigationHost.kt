@@ -6,7 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import edu.ucne.quantumswap.ui.Login.Login
+import edu.ucne.quantumswap.ui.login.Login
 import edu.ucne.quantumswap.ui.ShoppingCart.ShoppingCartMain
 import edu.ucne.quantumswap.ui.Store.StoreScreen
 import edu.ucne.quantumswap.ui.navigation.Destinations.*
@@ -20,7 +20,7 @@ fun navigationHost(
             StoreScreen(onClick = { navController.navigate(ShoppingCart.route) })
         }
         composable(LoginScreen.route){
-            Login()
+            Login(onClick = {navController.navigate(Home.route)})
         }
         composable(ShoppingCart.route){
             ShoppingCartMain()

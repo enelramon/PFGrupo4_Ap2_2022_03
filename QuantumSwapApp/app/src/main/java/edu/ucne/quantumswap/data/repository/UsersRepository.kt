@@ -12,17 +12,12 @@ class UsersRepository @Inject constructor(
 
     suspend fun getAllUsers() = API.getAllUsers()
 
+
+
     suspend fun SignUser(response: UserDTO) = API.SignUser(response)
 
 //    suspend fun loginUserWithEmail(loginDto: LoginDto) = API.loginUserWithEmail(loginDto)
 
-    suspend fun loginUserWithEmail(loginDto: LoginDto){
-
-        try {
-            API.loginUserWithEmail(loginDto)
-        } catch (e: Exception){
-            throw e
-        }
-    }
+    suspend fun loginUserWithEmail(loginDto: LoginDto) =  API.loginUserWithEmail(loginDto)
 
 }

@@ -84,7 +84,7 @@ fun Login(
                 .shadow(4.dp)
                 .width(300.dp),
             onClick = {
-                      viewModel.AuthUser()
+                viewModel.AuthUser()
                 onClick()
             },
             shape = RoundedCornerShape(12), colors = mainButtonColor

@@ -29,10 +29,15 @@ class SigInViewModel @Inject constructor(
                     Name = name,
                     LastName = lastname,
                     Email = email,
-                    Password = password
+                    Password = password,
+                    SecretKey = "",
+                    CreationDate = "",
+                    ModificationDate = "",
+                    Status = 0
                 )
             )
         }
     }
 
 }
+

@@ -1,23 +1,18 @@
 package edu.ucne.quantumswap
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import edu.ucne.quantumswap.ui.components.drawer
 import edu.ucne.quantumswap.ui.components.topBar
 import edu.ucne.quantumswap.ui.navigation.Destinations
 import edu.ucne.quantumswap.ui.navigation.navigationHost
-import edu.ucne.quantumswap.ui.Home.HomeScreen
 import edu.ucne.quantumswap.ui.theme.QuantumSwapTheme
 
 @AndroidEntryPoint
@@ -26,15 +21,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
            MainScreen()
-//            QuantumSwapTheme {
-//                // A surface container using the 'background' color from the theme
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colorScheme.background
-//                ) {
-//                    Greeting("Android")
-//                }
-//            }
         }
     }
 }
@@ -52,12 +38,23 @@ fun MainScreen(
     val navigationItems = listOf(
         Destinations.Home,
         Destinations.LoginScreen,
-        Destinations.ShoppingCart
+        Destinations.SignInScreen
     )
 
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = { topBar(scope, scaffoldState) },
+        topBar = { topBar(scope, scaffoldState, onClick = {
+                if(navController.currentDestination?.route == Destinations.ShoppingCart.route) {
+
+                    navController.navigate(Destinations.Home.route)
+
+                }else{
+
+                    navController.navigate(Destinations.ShoppingCart.route)
+
+                }
+            })
+         },
         drawerContent = { drawer(scope, scaffoldState, navController, items = navigationItems) },
         drawerGesturesEnabled = true
     ) {

@@ -38,15 +38,16 @@ fun shoppingCartMain(
 
     )
 
-    val producto: Int = 10
-    var Cant: Int = 10
+    val producto: Int = 1
+    var cant: Int = 1
+    var payment: Int = 0
+
     Scaffold(
         bottomBar = {
             BottomAppBar(
                backgroundColor = Color.White,
                 elevation = 50.dp
             ) {
-
 
                 Button(
                     modifier = Modifier
@@ -60,14 +61,14 @@ fun shoppingCartMain(
                     onClick = { /*TODO*/ }
                 ) {
                     Text(
-                        text = "Comprar (${producto})",
+                        text = "Comprar(${producto})",
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.ExtraBold
                     )
                 }
 
                 Text(
-                    text = "Full Payment: 50000",
+                    text = "Full Payment:${payment}",
                     modifier = Modifier.padding(start = 60.dp),
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.ExtraBold
@@ -79,7 +80,7 @@ fun shoppingCartMain(
             val uiState by viewModel.uiSate.collectAsState()
             ShoppingCart(
                 product = uiState.product,
-                cant = Cant
+                cant = payment
             )
 
         }

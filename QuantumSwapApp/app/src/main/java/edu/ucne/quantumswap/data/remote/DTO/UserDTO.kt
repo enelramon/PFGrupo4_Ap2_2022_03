@@ -1,7 +1,11 @@
 package edu.ucne.quantumswap.data.remote.DTO
 
+import com.squareup.moshi.JsonClass
+
+
+@JsonClass(generateAdapter = true)
 data class UserDTO(
-    val UserId: String,
+    val UserId: Int,
     val Name: String,
     val LastName:String,
     val Email:String,
@@ -10,4 +14,9 @@ data class UserDTO(
     val CreationDate: String,
     val ModificationDate: String,
     val Status: Int
+)
+
+data class UserLoginDto(
+    val userDto : UserDTO,
+    val Exist: Boolean
 )

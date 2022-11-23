@@ -6,10 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.Card
-import androidx.compose.material.Divider
-import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -46,7 +43,7 @@ fun StoreScreen(
                 .fillMaxWidth()
                 .padding(it)
         ) {
-            val uiState by viewModel.uiState.collectAsState()
+            val state = viewModel.state.value
 
             LazyColumn(
                 modifier = Modifier
@@ -54,7 +51,7 @@ fun StoreScreen(
                     .padding(it),
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
-                items(uiState.products){ product ->
+                items(state.products){ product ->
                     Box(modifier = Modifier
                         .fillMaxWidth(0.90f)
                         .padding(16.dp)
@@ -91,6 +88,9 @@ fun StoreScreen(
 
                 }
             }
+
+            if (state.isLoading)
+                CircularProgressIndicator()
         }
     }
 }

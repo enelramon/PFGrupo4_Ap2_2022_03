@@ -1,4 +1,4 @@
-package edu.ucne.quantumswap.utils
+package edu.ucne.quantumswap.domain
 
 sealed class Resource<T>(val data: T? = null, val message: String? = null) {
     class Success<T>(data: T) : Resource<T>(data)

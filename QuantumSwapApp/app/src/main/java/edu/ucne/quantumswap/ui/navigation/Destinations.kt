@@ -9,7 +9,6 @@ sealed class Destinations(
     val title: String,
     val icon: ImageVector
 ){
-    object SplashQuantum: Destinations("Splash", "Splash Quantum", Icons.Default.Star)
     object Home: Destinations("Home", "Home", Icons.Filled.Home)
     object LoginScreen: Destinations("Login", "Login", Icons.Filled.Person)
     object ShoppingCart: Destinations("ShoppingCart","Shopping Cart", Icons.Default.ShoppingCart)

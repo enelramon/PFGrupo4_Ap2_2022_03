@@ -29,6 +29,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import edu.ucne.quantumswap.ui.components.Splash
 
 @OptIn( ExperimentalMaterial3Api::class)
 @Composable
@@ -36,14 +37,18 @@ fun StoreScreen(
     viewModel: StoreViewModel = hiltViewModel(),
     onClick: () -> Unit,
 ){
-    Scaffold() {
+    Scaffold {
+        val state = viewModel.state.value
+
+        if(state.isLoading){
+            Splash()
+        }
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(it)
         ) {
-            val state = viewModel.state.value
 
             LazyColumn(
                 modifier = Modifier

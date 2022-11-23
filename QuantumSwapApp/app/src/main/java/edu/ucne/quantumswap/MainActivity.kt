@@ -13,8 +13,6 @@ import edu.ucne.quantumswap.ui.components.drawer
 import edu.ucne.quantumswap.ui.components.topBar
 import edu.ucne.quantumswap.ui.navigation.Destinations
 import edu.ucne.quantumswap.ui.navigation.navigationHost
-//import edu.ucne.quantumswap.ui.Home.HomeScreen
-
 import edu.ucne.quantumswap.ui.theme.QuantumSwapTheme
 
 @AndroidEntryPoint
@@ -23,15 +21,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
            MainScreen()
-//            QuantumSwapTheme {
-//                // A surface container using the 'background' color from the theme
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colorScheme.background
-//                ) {
-//                    Greeting("Android")
-//                }
-//            }
         }
     }
 }
@@ -56,9 +45,13 @@ fun MainScreen(
         scaffoldState = scaffoldState,
         topBar = { topBar(scope, scaffoldState, onClick = {
                 if(navController.currentDestination?.route == Destinations.ShoppingCart.route) {
+
                     navController.navigate(Destinations.Home.route)
+
                 }else{
+
                     navController.navigate(Destinations.ShoppingCart.route)
+
                 }
             })
          },

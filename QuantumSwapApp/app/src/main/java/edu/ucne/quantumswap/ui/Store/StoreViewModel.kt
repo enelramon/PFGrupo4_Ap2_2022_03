@@ -9,7 +9,7 @@ import edu.ucne.quantumswap.data.local.entity.Product
 import edu.ucne.quantumswap.data.remote.DTO.ProductDTO
 import edu.ucne.quantumswap.data.repository.ProductEntityRepository
 import edu.ucne.quantumswap.data.repository.ProductsRepository
-import edu.ucne.quantumswap.utils.Resource
+import edu.ucne.quantumswap.domain.Resource
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -23,8 +23,8 @@ data class ProductsUiState(
 
 @HiltViewModel
 class StoreViewModel @Inject constructor(
-    val repository: ProductsRepository,
-    val repositoryroom: ProductEntityRepository
+    val api: ProductsRepository,
+    val room: ProductEntityRepository
 ): ViewModel(){
 
 //    var uiState = MutableStateFlow(ProductsUiState())
@@ -36,7 +36,7 @@ class StoreViewModel @Inject constructor(
 
 
     init{
-            repository.getAllProducts().onEach {
+            api.getAllProducts().onEach {
                     result ->
 
                 when(result) {
@@ -57,7 +57,7 @@ class StoreViewModel @Inject constructor(
 
     fun AddShoppingCart(productId: Int, descripcion: String, price: Int, image: String){
         viewModelScope.launch {
-            repositoryroom.InsertProduct(
+            room.InsertProduct(
                 Product(
                     ProductId = productId,
                     Description = descripcion,

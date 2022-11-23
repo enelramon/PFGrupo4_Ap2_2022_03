@@ -10,27 +10,34 @@ import java.io.IOException
 import javax.inject.Inject
 
 class ProductsRepository @Inject constructor(
-    private val API: QuantumSwapAPI
+    private val api: QuantumSwapAPI
 ){
 
      fun getAllProducts(): Flow<Resource<List<ProductDTO>>> = flow {
-        try {
+
+         try {
+
             emit(Resource.Loading())
 
-            val Allproduct = API.getAllProducts()
+            val Allproduct = api.getAllProducts()
 
             emit(Resource.Success(Allproduct))
+
         } catch ( e: HttpException){
+
             emit(Resource.Error(e.message() ?: "General HTTP Error"))
+
         } catch (e: IOException) {
+
             emit(Resource.Error(e.message ?: "Check your internet connection"))
+
         }
     }
 
-    suspend fun GetFind(Id: Int) = API.GetFind(Id)
+    suspend fun GetFind(Id: Int) = api.GetFind(Id)
 
-    suspend fun putProduct(response: ProductDTO) = API.putProduct(response)
+//    suspend fun putProduct(response: ProductDTO) = API.putProduct(response)
 
-    suspend fun deleteProduct(Id:Int) = API.deleteProduct(Id)
+//    suspend fun deleteProduct(Id:Int) = API.deleteProduct(Id)
 
 }

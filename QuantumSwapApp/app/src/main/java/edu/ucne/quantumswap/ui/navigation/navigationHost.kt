@@ -9,7 +9,6 @@ import androidx.navigation.compose.composable
 import edu.ucne.quantumswap.ui.login.Login
 import edu.ucne.quantumswap.ui.ShoppingCart.ShoppingCartMain
 import edu.ucne.quantumswap.ui.Store.StoreScreen
-import edu.ucne.quantumswap.ui.components.SplashQuantum
 import edu.ucne.quantumswap.ui.navigation.Destinations.*
 import edu.ucne.quantumswap.ui.sign.SignIn
 
@@ -17,11 +16,8 @@ import edu.ucne.quantumswap.ui.sign.SignIn
 fun navigationHost(
     navController: NavHostController
 ) {
-    NavHost(navController = navController, startDestination = SplashQuantum.route){
+    NavHost(navController = navController, startDestination = Home.route){
 
-        composable(SplashQuantum.route){
-           SplashQuantum(navHostController = navController)
-        }
 
         composable(Home.route){
             StoreScreen(onClick = { navController.navigate(ShoppingCart.route) })

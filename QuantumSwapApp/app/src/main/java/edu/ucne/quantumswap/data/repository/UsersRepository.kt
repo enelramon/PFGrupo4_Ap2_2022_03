@@ -34,7 +34,7 @@ class UsersRepository @Inject constructor(
 
     }
 
-    suspend fun SignUser(response: UserDto) = API.SignUser(response)
+//    suspend fun SignUser(response: UserDto) = API.SignUser(response)
 
 
     suspend fun loginUserWithEmail(loginDto: LoginDto) =  API.loginUserWithEmail(loginDto)

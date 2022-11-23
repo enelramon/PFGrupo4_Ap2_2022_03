@@ -17,6 +17,8 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -268,7 +270,7 @@ fun PintaTextfiel(
             .height(60.dp)
             .width(300.dp),
         value = viewModel.email,
-        label = { Text(text = "Email Address*")},
+        label = { Text(text = "Email")},
         onValueChange = {viewModel.email = it},
         shape = CutCornerShape(5),
         keyboardOptions = KeyboardOptions(
@@ -281,12 +283,13 @@ fun PintaTextfiel(
             .height(60.dp)
             .width(300.dp),
         value = viewModel.password,
-        label = { Text(text = "Password*")},
+        label = { Text(text = "Password")},
         onValueChange = {viewModel.password = it},
         shape = CutCornerShape(5),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Password
-        )
+        ),
+        visualTransformation = PasswordVisualTransformation()
 
     )
 }

@@ -1,12 +1,11 @@
-package edu.ucne.quantumswap.ui.Login
+package edu.ucne.quantumswap.ui.login
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.text.selection.LocalTextSelectionColors
-import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material3.*
 
 
@@ -33,11 +32,13 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.*
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import edu.ucne.quantumswap.R
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
@@ -49,10 +50,18 @@ fun MyIcon(modifier: Modifier =Modifier.padding(bottom = 30.dp))
     }
 ) {
 
-    val focusRequester = FocusRequester()
-    val customTextSelectionColors = TextSelectionColors(
-        handleColor = Color(0xFF1976D2),
-        backgroundColor = Color(0xFF1976D2)
+}
+
+
+@Composable
+fun Login(
+    onClick: () -> Unit,
+    viewModel: Loginviewmodel = hiltViewModel()
+) {
+
+    val mainButtonColor = ButtonDefaults.buttonColors(
+        containerColor = androidx.compose.ui.graphics.Color(25,118,210),
+        contentColor = Color.White
     )
     val rippleColor = rememberRipple(color = Color(0xFF39C1D3))
 
@@ -134,10 +143,16 @@ fun Login() {
         }
         Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+                .align(Alignment.CenterHorizontally)
+                .height(60.dp)
+                .shadow(4.dp)
+                .width(300.dp),
+            onClick = {
+                      viewModel.AuthUser()
+                onClick()
+            },
+            shape = RoundedCornerShape(12), colors = mainButtonColor
+        ){
 
             Box(
                 modifier = Modifier
@@ -206,4 +221,41 @@ fun Login() {
 
         }
     }
+    
 }
+
+
+@Composable
+fun PintaTextfiel(
+    viewModel: Loginviewmodel = hiltViewModel()
+)
+{
+    OutlinedTextField(
+        modifier = Modifier
+            .height(60.dp)
+            .width(300.dp),
+        value = viewModel.email,
+        label = { Text(text = "Email Address*")},
+        onValueChange = {viewModel.email = it},
+        shape = CutCornerShape(5),
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Email
+        )
+    )
+    Spacer(modifier = Modifier.padding(16.dp))
+    OutlinedTextField(
+        modifier = Modifier
+            .height(60.dp)
+            .width(300.dp),
+        value = viewModel.password,
+        label = { Text(text = "Password*")},
+        onValueChange = {viewModel.password = it},
+        shape = CutCornerShape(5),
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Password
+        )
+
+    )
+}
+
+

@@ -1,5 +1,6 @@
 package edu.ucne.quantumswap.data.remote
 
+import edu.ucne.quantumswap.data.remote.DTO.LoginDto
 import edu.ucne.quantumswap.data.remote.DTO.UserDTO
 import edu.ucne.quantumswap.data.remote.DTO.ProductDTO
 import retrofit2.Response
@@ -28,5 +29,5 @@ interface QuantumSwapAPI{
     suspend fun saveUser(@Body UserDTO: UserDTO): Response<UserDTO>
 
     @POST("users/login")
-    suspend fun loginUserWithEmail(@Body UserDTO: UserDTO): Response<UserDTO>
+    suspend fun loginUserWithEmail(@Body loginDto: LoginDto): LoginDto
 }

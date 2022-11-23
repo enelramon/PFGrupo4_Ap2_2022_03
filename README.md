@@ -12,10 +12,10 @@ Android App in <b>Kotlin</b> using:
 -Retrofit<br/>
 -Hilt<br/>
 -Material 3<br/>
+-Room<br/>
 -Material<br/>
 
-<img width="363" alt="Captura de pantalla 2022-11-16 a la(s) 4 49 12 a  m" src="https://user-images.githubusercontent.com/95009440/202133410-5caaadb2-e8c1-4fe0-b755-a56046791bac.png">&emsp;&emsp;<img width="363" alt="Captura de pantalla 2022-11-16 a la(s) 4 48 38 a  m" src="https://user-images.githubusercontent.com/95009440/202133365-1230d595-ba4b-450b-a421-169bbaa448b4.png">&emsp;&emsp;<br/><br/><img width="364" alt="Captura de pantalla 2022-11-16 a la(s) 5 04 44 p  m" src="https://user-images.githubusercontent.com/95009440/202294045-1e3aa96c-bed0-4f55-88d0-c52783142bd2.png">
-
+<img width="361" alt="Captura de pantalla 2022-11-23 a la(s) 6 46 37 a  m" src="https://user-images.githubusercontent.com/95009440/203528015-0179274f-4855-4e17-bd12-79707e7a40a5.png">&emsp;&emsp;<img width="363" alt="Captura de pantalla 2022-11-16 a la(s) 4 48 38 a  m" src="https://user-images.githubusercontent.com/95009440/202133365-1230d595-ba4b-450b-a421-169bbaa448b4.png">&emsp;&emsp;<br/><br/><img width="364" alt="Captura de pantalla 2022-11-16 a la(s) 5 04 44 p  m" src="https://user-images.githubusercontent.com/95009440/202294045-1e3aa96c-bed0-4f55-88d0-c52783142bd2.png">&emsp;&emsp;<img width="361" alt="Captura de pantalla 2022-11-23 a la(s) 6 46 55 a  m" src="https://user-images.githubusercontent.com/95009440/203528237-85e38304-13a2-4730-a899-d54564559ebe.png">
 
 <br/>
 <br/>

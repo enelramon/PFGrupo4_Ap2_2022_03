@@ -6,15 +6,11 @@ import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
-
-
 import androidx.compose.material.*
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.ui.text.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-
-
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -27,7 +23,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import edu.ucne.quantumswap.R
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
 fun MyIcon(modifier: Modifier =Modifier.padding(bottom = 30.dp)) {
@@ -36,7 +31,6 @@ fun MyIcon(modifier: Modifier =Modifier.padding(bottom = 30.dp)) {
     }
 
 }
-
 
 //@Composable
 //fun login(

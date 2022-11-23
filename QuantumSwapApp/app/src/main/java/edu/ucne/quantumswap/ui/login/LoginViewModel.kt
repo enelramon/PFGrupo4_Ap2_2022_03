@@ -12,8 +12,6 @@ import edu.ucne.quantumswap.domain.Resource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
-
 @HiltViewModel
 class Loginviewmodel @Inject constructor(
     private val apiuser: UsersRepository

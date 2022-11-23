@@ -1,24 +1,21 @@
 package edu.ucne.quantumswap.data.repository
 
-import edu.ucne.quantumswap.data.remote.DTO.LoginDto
-import edu.ucne.quantumswap.data.remote.DTO.ProductDTO
-import edu.ucne.quantumswap.data.remote.QuantumSwapAPI
-import edu.ucne.quantumswap.data.remote.DTO.UserDTO
-import edu.ucne.quantumswap.ui.login.Loginviewmodel
-import edu.ucne.quantumswap.utils.Resource
+import edu.ucne.quantumswap.data.remote.Dto.LoginDto
+import edu.ucne.quantumswap.data.remote.QuantumSwapApi
+import edu.ucne.quantumswap.data.remote.Dto.UserDto
+import edu.ucne.quantumswap.domain.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
-import retrofit2.http.Body
 import java.io.IOException
 import javax.inject.Inject
 
 class UsersRepository @Inject constructor(
-    private val API: QuantumSwapAPI
+    private val API: QuantumSwapApi
 ){
 
 //    suspend fun getAllUsers() = API.getAllUsers()
-    suspend fun signUser(UserDTO: UserDTO): Flow<Resource<Unit>> = flow {
+    suspend fun signUser(UserDTO: UserDto): Flow<Resource<Unit>> = flow {
 
         try {
             emit(Resource.Loading())
@@ -37,7 +34,7 @@ class UsersRepository @Inject constructor(
 
     }
 
-    suspend fun SignUser(response: UserDTO) = API.SignUser(response)
+    suspend fun SignUser(response: UserDto) = API.SignUser(response)
 
 
     suspend fun loginUserWithEmail(loginDto: LoginDto) =  API.loginUserWithEmail(loginDto)

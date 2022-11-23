@@ -1,4 +1,4 @@
-package edu.ucne.quantumswap.ui.Store
+package edu.ucne.quantumswap.ui.store
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import edu.ucne.quantumswap.data.local.entity.Product
-import edu.ucne.quantumswap.data.remote.DTO.ProductDTO
+import edu.ucne.quantumswap.data.remote.Dto.ProductDto
 import edu.ucne.quantumswap.data.repository.ProductEntityRepository
 import edu.ucne.quantumswap.data.repository.ProductsRepository
 import edu.ucne.quantumswap.domain.Resource
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 data class ProductsUiState(
     val isLoading: Boolean = false,
-    val products: List<ProductDTO> = emptyList(),
+    val products: List<ProductDto> = emptyList(),
     val error: String = ""
 )
 

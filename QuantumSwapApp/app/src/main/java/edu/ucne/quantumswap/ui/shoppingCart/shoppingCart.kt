@@ -1,4 +1,4 @@
-package edu.ucne.quantumswap.ui.ShoppingCart
+package edu.ucne.quantumswap.ui.shoppingCart
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -25,12 +25,11 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.text.font.FontWeight
 import edu.ucne.quantumswap.data.local.entity.Product
-import edu.ucne.quantumswap.data.remote.DTO.ProductDTO
 
 
 @Preview(showSystemUi = true)
 @Composable
-fun ShoppingCartMain(
+fun shoppingCartMain(
     viewModel: ShoppingCartViewModel = hiltViewModel()
 ) {
     val mainButtonColor = ButtonDefaults.buttonColors(

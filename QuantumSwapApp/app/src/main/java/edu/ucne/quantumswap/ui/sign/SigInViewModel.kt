@@ -6,8 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import edu.ucne.quantumswap.data.remote.DTO.LoginDto
-import edu.ucne.quantumswap.data.remote.DTO.UserDTO
+import edu.ucne.quantumswap.data.remote.Dto.UserDto
 import edu.ucne.quantumswap.data.repository.UsersRepository
 import edu.ucne.quantumswap.domain.Resource
 import kotlinx.coroutines.launch
@@ -30,7 +29,7 @@ class SigInViewModel @Inject constructor(
 
             try {
                 val data = apiSign.signUser(
-                    UserDTO(
+                    UserDto(
                         UserId = 0,
                         Name = name,
                         LastName = lastname,

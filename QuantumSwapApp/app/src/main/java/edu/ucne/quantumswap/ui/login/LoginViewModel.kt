@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import edu.ucne.quantumswap.data.remote.DTO.LoginDto
+import edu.ucne.quantumswap.data.remote.Dto.LoginDto
 import edu.ucne.quantumswap.data.repository.UsersRepository
 import edu.ucne.quantumswap.domain.Resource
 import kotlinx.coroutines.launch

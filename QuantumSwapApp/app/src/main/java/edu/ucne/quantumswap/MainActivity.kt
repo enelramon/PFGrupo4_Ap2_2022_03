@@ -13,7 +13,8 @@ import edu.ucne.quantumswap.ui.components.drawer
 import edu.ucne.quantumswap.ui.components.topBar
 import edu.ucne.quantumswap.ui.navigation.Destinations
 import edu.ucne.quantumswap.ui.navigation.navigationHost
-import edu.ucne.quantumswap.ui.Home.HomeScreen
+//import edu.ucne.quantumswap.ui.Home.HomeScreen
+
 import edu.ucne.quantumswap.ui.theme.QuantumSwapTheme
 
 @AndroidEntryPoint
@@ -53,7 +54,14 @@ fun MainScreen(
 
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = { topBar(scope, scaffoldState, onClick = { navController.navigate(Destinations.ShoppingCart.route) }) },
+        topBar = { topBar(scope, scaffoldState, onClick = {
+                if(navController.currentDestination?.route == Destinations.ShoppingCart.route) {
+                    navController.navigate(Destinations.Home.route)
+                }else{
+                    navController.navigate(Destinations.ShoppingCart.route)
+                }
+            })
+         },
         drawerContent = { drawer(scope, scaffoldState, navController, items = navigationItems) },
         drawerGesturesEnabled = true
     ) {

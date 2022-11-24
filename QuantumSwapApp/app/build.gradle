@@ -90,6 +90,8 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
     implementation "androidx.room:room-ktx:$room_version"
 
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha01"
+
     // To use Coroutine features, you must add `ktx` artifact from Room as a dependency
     implementation "androidx.room:room-ktx:$room_version"
 }

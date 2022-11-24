@@ -31,6 +31,10 @@ class ProductsRepository @Inject constructor(
 
             emit(Resource.Error(e.message ?: "Check your internet connection"))
 
+        } catch (e: Exception) {
+
+            emit(Resource.Error(e.message ?: "Check your internet connection"))
+
         }
     }
 

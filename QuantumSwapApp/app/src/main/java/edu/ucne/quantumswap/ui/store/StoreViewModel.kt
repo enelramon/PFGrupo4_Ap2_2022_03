@@ -10,8 +10,7 @@ import edu.ucne.quantumswap.data.remote.Dto.ProductDto
 import edu.ucne.quantumswap.data.repository.ProductEntityRepository
 import edu.ucne.quantumswap.data.repository.ProductsRepository
 import edu.ucne.quantumswap.domain.Resource
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,26 +29,31 @@ class StoreViewModel @Inject constructor(
 //    var uiState = MutableStateFlow(ProductsUiState())
 //        private set
 
-    private var _state = mutableStateOf(ProductsUiState())
-    val state: State<ProductsUiState> = _state
+    private var _state = MutableStateFlow(ProductsUiState())
+    val state: StateFlow<ProductsUiState> = _state.asStateFlow()
 
 
 
     init{
-            api.getAllProducts().onEach {
-                    result ->
-
+            api.getAllProducts().onEach { result ->
                 when(result) {
                     is Resource.Loading -> {
-                        _state.value = ProductsUiState(isLoading = true)
+                        //_state.value = ProductsUiState(isLoading = true)
+                        _state.update { it.copy(isLoading = true) }
                     }
 
                     is Resource.Success -> {
-                        _state.value = ProductsUiState(products = result.data ?: emptyList())
+//                        _state.value = ProductsUiState(products = result.data ?: emptyList())
+                        _state.update {
+                            it.copy(isLoading=false, products = result.data ?: emptyList())
+                        }
                     }
 
                     is Resource.Error -> {
-                        _state.value = ProductsUiState(error = result.message ?: "unknown error")
+//                        _state.value = ProductsUiState(error = result.message ?: "unknown error")
+                        _state.update {
+                            it.copy(isLoading=false, error = result.message ?: "unknown error")
+                        }
                     }
                 }
             }.launchIn(viewModelScope)

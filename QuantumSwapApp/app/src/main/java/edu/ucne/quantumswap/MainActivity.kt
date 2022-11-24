@@ -44,15 +44,19 @@ fun MainScreen(
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = { topBar(scope, scaffoldState, onClick = {
-                if(navController.currentDestination?.route == Destinations.ShoppingCart.route) {
+//                if(navController.currentDestination?.route == Destinations.ShoppingCart.route) {
+//
+//                    navController.navigate(Destinations.Home.route)
+//
+//                }else{
+//
+//                    navController.navigate(Destinations.ShoppingCart.route)
+//
+//                }
+                val route = if(navController.currentDestination?.route == Destinations.ShoppingCart.route)  Destinations.Home.route else Destinations.ShoppingCart.route
+                navController.navigate(route)
 
-                    navController.navigate(Destinations.Home.route)
 
-                }else{
-
-                    navController.navigate(Destinations.ShoppingCart.route)
-
-                }
             })
          },
         drawerContent = { drawer(scope, scaffoldState, navController, items = navigationItems) },

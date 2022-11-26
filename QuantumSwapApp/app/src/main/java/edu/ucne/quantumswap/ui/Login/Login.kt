@@ -89,9 +89,7 @@ fun Login(
             },
             shape = RoundedCornerShape(12), colors = mainButtonColor
         ){
-
             Text(text = "LOG IN")
-
         }
 
     }

@@ -14,15 +14,21 @@ class ProductsRepository @Inject constructor(
 ){
 
      fun getAllProducts(): Flow<Resource<List<ProductDTO>>> = flow {
+
         try {
+
             emit(Resource.Loading())
 
             val Allproduct = API.getAllProducts()
 
             emit(Resource.Success(Allproduct))
+
         } catch ( e: HttpException){
+
             emit(Resource.Error(e.message() ?: "General HTTP Error"))
+
         } catch (e: IOException) {
+
             emit(Resource.Error(e.message ?: "Check your internet connection"))
         }
     }

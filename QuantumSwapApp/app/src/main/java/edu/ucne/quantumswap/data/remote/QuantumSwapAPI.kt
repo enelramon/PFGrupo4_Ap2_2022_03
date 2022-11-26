@@ -30,5 +30,5 @@ interface QuantumSwapAPI{
     suspend fun SignUser(@Body userDTO: UserDTO)
 
     @POST("users/login")
-    suspend fun loginUserWithEmail(@Body loginDto: LoginDto)
+    suspend fun loginUserWithEmail(@Body userDTO: UserDTO): List<UserDTO>
 }

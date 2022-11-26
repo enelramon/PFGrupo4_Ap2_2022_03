@@ -27,8 +27,6 @@ class StoreViewModel @Inject constructor(
     val repositoryroom: ProductEntityRepository
 ): ViewModel(){
 
-//    var uiState = MutableStateFlow(ProductsUiState())
-//        private set
 
     private var _state = mutableStateOf(ProductsUiState())
     val state: State<ProductsUiState> = _state

@@ -1,14 +1,10 @@
-package edu.ucne.quantumswap.ui.ShoppingCart
+package edu.ucne.quantumswap.ui.shoppingCart
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import edu.ucne.quantumswap.data.local.entity.Product
-import edu.ucne.quantumswap.data.remote.DTO.ProductDTO
 import edu.ucne.quantumswap.data.repository.ProductEntityRepository
-import edu.ucne.quantumswap.data.repository.ProductsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch

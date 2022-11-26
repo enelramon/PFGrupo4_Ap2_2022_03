@@ -10,7 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import edu.ucne.quantumswap.data.local.entity.AppDataBase
-import edu.ucne.quantumswap.data.remote.QuantumSwapAPI
+import edu.ucne.quantumswap.data.remote.QuantumSwapApi
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -39,12 +39,12 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providesQuantumSwapApi(moshi: Moshi): QuantumSwapAPI {
+    fun providesQuantumSwapApi(moshi: Moshi): QuantumSwapApi {
         return Retrofit.Builder()
             .baseUrl("https://quantumswap.herokuapp.com/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
-            .create(QuantumSwapAPI::class.java)
+            .create(QuantumSwapApi::class.java)
     }
 
 }

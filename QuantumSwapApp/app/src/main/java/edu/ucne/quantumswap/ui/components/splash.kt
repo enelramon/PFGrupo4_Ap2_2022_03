@@ -1,6 +1,5 @@
 package edu.ucne.quantumswap.ui.components
 
-import android.window.SplashScreen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -17,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import edu.ucne.quantumswap.R
 
 @Composable
-fun Splash() {
+fun splash() {
     Column(modifier = Modifier
         .fillMaxSize()
         .background(Color.Black),
@@ -32,10 +31,10 @@ fun Splash() {
 
 
         Text(
-            text = "Quntum Swap App",
+            text = "Quantum",
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
-            fontStyle = FontStyle.Italic,
+            fontStyle = FontStyle.Normal,
             color = Color.White
         )
     }

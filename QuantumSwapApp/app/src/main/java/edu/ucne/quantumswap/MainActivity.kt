@@ -21,15 +21,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
            MainScreen()
-//            QuantumSwapTheme {
-//                // A surface container using the 'background' color from the theme
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colorScheme.background
-//                ) {
-//                    Greeting("Android")
-//                }
-//            }
         }
     }
 }
@@ -52,7 +43,22 @@ fun MainScreen(
 
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = { topBar(scope, scaffoldState, onClick = { navController.navigate(Destinations.ShoppingCart.route) }) },
+        topBar = { topBar(scope, scaffoldState, onClick = {
+//                if(navController.currentDestination?.route == Destinations.ShoppingCart.route) {
+//
+//                    navController.navigate(Destinations.Home.route)
+//
+//                }else{
+//
+//                    navController.navigate(Destinations.ShoppingCart.route)
+//
+//                }
+                val route = if(navController.currentDestination?.route == Destinations.ShoppingCart.route)  Destinations.Home.route else Destinations.ShoppingCart.route
+                navController.navigate(route)
+
+
+            })
+         },
         drawerContent = { drawer(scope, scaffoldState, navController, items = navigationItems) },
         drawerGesturesEnabled = true
     ) {

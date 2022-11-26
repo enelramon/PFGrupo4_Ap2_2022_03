@@ -1,4 +1,4 @@
-package edu.ucne.quantumswap.ui.ShoppingCart
+package edu.ucne.quantumswap.ui.shoppingCart
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -25,12 +25,11 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.text.font.FontWeight
 import edu.ucne.quantumswap.data.local.entity.Product
-import edu.ucne.quantumswap.data.remote.DTO.ProductDTO
 
 
 @Preview(showSystemUi = true)
 @Composable
-fun ShoppingCartMain(
+fun shoppingCartMain(
     viewModel: ShoppingCartViewModel = hiltViewModel()
 ) {
     val mainButtonColor = ButtonDefaults.buttonColors(
@@ -39,15 +38,16 @@ fun ShoppingCartMain(
 
     )
 
-    val producto: Int = 10
-    var Cant: Int = 10
+    val producto: Int = 1
+    var cant: Int = 1
+    var payment: Int = 0
+
     Scaffold(
         bottomBar = {
             BottomAppBar(
                backgroundColor = Color.White,
                 elevation = 50.dp
             ) {
-
 
                 Button(
                     modifier = Modifier
@@ -61,14 +61,14 @@ fun ShoppingCartMain(
                     onClick = { /*TODO*/ }
                 ) {
                     Text(
-                        text = "Comprar (${producto})",
+                        text = "Comprar(${producto})",
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.ExtraBold
                     )
                 }
 
                 Text(
-                    text = "Full Payment: 50000",
+                    text = "Full Payment:${payment}",
                     modifier = Modifier.padding(start = 60.dp),
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.ExtraBold
@@ -80,7 +80,7 @@ fun ShoppingCartMain(
             val uiState by viewModel.uiSate.collectAsState()
             ShoppingCart(
                 product = uiState.product,
-                cant = Cant
+                cant = payment
             )
 
         }

@@ -20,6 +20,7 @@ data class ProductsUiState(
     val error: String = ""
 )
 
+
 @HiltViewModel
 class StoreViewModel @Inject constructor(
     val api: ProductsRepository,
@@ -31,7 +32,6 @@ class StoreViewModel @Inject constructor(
 
     private var _state = MutableStateFlow(ProductsUiState())
     val state: StateFlow<ProductsUiState> = _state.asStateFlow()
-
 
 
     init{
@@ -66,7 +66,9 @@ class StoreViewModel @Inject constructor(
                     ProductId = productId,
                     Description = descripcion,
                     Price = price,
-                    Image = image
+                    Image = image,
+                    Cantidad = 1,
+                    Payment = price,
                 )
             )
         }

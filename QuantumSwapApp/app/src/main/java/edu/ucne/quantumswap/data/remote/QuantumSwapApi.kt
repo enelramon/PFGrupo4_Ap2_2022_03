@@ -3,6 +3,7 @@ package edu.ucne.quantumswap.data.remote
 import edu.ucne.quantumswap.data.remote.Dto.LoginDto
 import edu.ucne.quantumswap.data.remote.Dto.UserDto
 import edu.ucne.quantumswap.data.remote.Dto.ProductDto
+import edu.ucne.quantumswap.data.remote.Dto.ShoppingCartDto
 import retrofit2.http.*
 
 interface QuantumSwapApi{
@@ -29,4 +30,9 @@ interface QuantumSwapApi{
 
     @POST("users/login")
     suspend fun loginUserWithEmail(@Body loginDto: LoginDto)
+
+    //ShoppingCart
+    @PUT("shoppingcarts")
+    suspend fun SaveShopping(@Body shoppingCartDto: ShoppingCartDto)
+
 }

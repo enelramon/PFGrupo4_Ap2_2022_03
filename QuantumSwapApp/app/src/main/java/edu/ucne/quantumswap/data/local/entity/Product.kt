@@ -9,4 +9,6 @@ data class Product(
     val Description:String,
     val Price:Int,
     val Image:String,
+    val Cantidad: Int,
+    val Payment: Int
 )

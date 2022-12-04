@@ -36,7 +36,7 @@ import edu.ucne.quantumswap.ui.components.splash
 @Composable
 fun storeScreen(
     viewModel: StoreViewModel = hiltViewModel(),
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ){
     Scaffold {
 //        val state = viewModel.state

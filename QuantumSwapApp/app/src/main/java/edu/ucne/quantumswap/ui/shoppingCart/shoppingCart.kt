@@ -27,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import edu.ucne.quantumswap.data.local.entity.Product
 
 
+
 @Preview(showSystemUi = true)
 @Composable
 fun shoppingCartMain(
@@ -35,18 +36,18 @@ fun shoppingCartMain(
     val mainButtonColor = ButtonDefaults.buttonColors(
         containerColor = Color(0,0,0),
         contentColor = Color.White
-
     )
 
-    val producto: Int = 1
-    var cant: Int = 1
-    var payment: Int = 0
+    val uiState by viewModel.uiSate.collectAsState()
+
+    var cantidad = uiState.product.count()
+    var Total = uiState.product.sumOf { it.Payment }
 
     Scaffold(
         bottomBar = {
             BottomAppBar(
                backgroundColor = Color.White,
-                elevation = 50.dp
+                elevation = 25.dp
             ) {
 
                 Button(
@@ -54,21 +55,20 @@ fun shoppingCartMain(
                         .background(Color.Blue)
                         .height(40.dp)
                         .width(150.dp)
-//                        .shadow(4.dp)
                     ,
                     shape = RoundedCornerShape(10),
                    colors = mainButtonColor,
-                    onClick = { /*TODO*/ }
+                    onClick = { }
                 ) {
                     Text(
-                        text = "Comprar(${producto})",
+                        text = "Comprar(${cantidad})",
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.ExtraBold
                     )
                 }
 
                 Text(
-                    text = "Full Payment:${payment}",
+                    text = "Full Payment:${Total}",
                     modifier = Modifier.padding(start = 60.dp),
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.ExtraBold
@@ -77,10 +77,9 @@ fun shoppingCartMain(
         }
     ) {
         Column {
-            val uiState by viewModel.uiSate.collectAsState()
+
             ShoppingCart(
-                product = uiState.product,
-                cant = payment
+                product = uiState.product
             )
 
         }
@@ -90,15 +89,12 @@ fun shoppingCartMain(
 @Composable
 fun ShoppingCart(
     product: List<Product>,
-    cant: Int,
     viewModel: ShoppingCartViewModel = hiltViewModel()
 ) {
+
     LazyColumn(modifier = Modifier.fillMaxSize()){
         items(product){Product ->
 
-            var selecionar by remember {
-                mutableStateOf(false)
-            }
 
             Card(
                 elevation = 16.dp,
@@ -110,10 +106,6 @@ fun ShoppingCart(
 
                     Row(modifier = Modifier.padding(0.dp, 0.dp)) {
 
-//                        Checkbox(
-//                            checked = selecionar,
-//                            onCheckedChange = {selecionar = !selecionar }
-//                        )
 
                         Box(modifier = Modifier
                             .padding(0.dp)
@@ -122,20 +114,28 @@ fun ShoppingCart(
                         ){
                             AsyncImage(
                                 model = Product.Image,
-                                contentDescription = "${Product.Description}"
+                                contentDescription = "${Product.Image}"
                             )
                         }
 
                         Row(modifier = Modifier.padding(10.dp)) {
-
-                            //Restar Cantidad
                             Box(modifier = Modifier
                                 .width(30.dp)
                                 .height(30.dp)
                                 .border(0.5.dp, Color.Blue)
                             ){
 
-                                IconButton(onClick = {  }) {
+                                IconButton(onClick = {
+                                    viewModel.ElimCant(
+                                        Product.ProductId,
+                                        Product.Description,
+                                        Product.Price,
+                                        Product.Image,
+                                        Product.Cantidad - 1,
+                                        Product.Payment
+                                    )
+                                })
+                                {
                                     Image(painterResource(R.drawable.ic_baseline_horizontal_rule_24), contentDescription = "")
                                 }
 
@@ -150,21 +150,29 @@ fun ShoppingCart(
 
                                 IconButton(onClick = {  }) {
                                     Text(
-                                        text = "${cant}",
+                                        text = "${Product.Cantidad}",
                                         style = MaterialTheme.typography.titleMedium
                                     )
                                 }
 
                             }
-
-                            //Sumar Cantidad
                             Box(modifier = Modifier
                                 .width(30.dp)
                                 .height(30.dp)
                                 .border(0.5.dp, Color.Blue)
                             ){
 
-                                IconButton(onClick = {  }) {
+                                IconButton(onClick = {
+                                    viewModel.AggCant(
+                                        Product.ProductId,
+                                        Product.Description,
+                                        Product.Price,
+                                        Product.Image,
+                                        Product.Cantidad + 1,
+                                        Product.Payment
+                                    )
+                                }
+                                ) {
                                     Image(painterResource(R.drawable.ic_baseline_add_24), contentDescription = "")
                                 }
 
@@ -177,9 +185,10 @@ fun ShoppingCart(
                             ){
 
                                 Text(
-                                    text = "$ ${Product.Price}",
+                                    text = "$ ${Product.Payment}",
                                     style = MaterialTheme.typography.titleMedium
                                 )
+
                             }
                         }
 
@@ -194,8 +203,18 @@ fun ShoppingCart(
                 }
 
             }
+
         }
+
     }
+
+    Divider(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 4.dp)
+            .border(1.dp, Color.Black),
+        color = Color.White
+    )
 
 }
 

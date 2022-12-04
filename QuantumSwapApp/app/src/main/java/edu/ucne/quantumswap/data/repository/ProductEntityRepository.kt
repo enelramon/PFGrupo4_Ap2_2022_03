@@ -12,6 +12,10 @@ class ProductEntityRepository @Inject constructor(
         db.ProductDao.insertproduct(product)
     }
 
+    suspend fun UpdateProduct(product: Product){
+        db.ProductDao.updateproduct(product)
+    }
+
     fun GetList() = db.ProductDao.getList()
 
     suspend fun Delete(product: Product) = db.ProductDao.deleteproduct(product)

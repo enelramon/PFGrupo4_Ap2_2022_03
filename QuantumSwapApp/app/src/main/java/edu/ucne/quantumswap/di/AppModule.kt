@@ -24,7 +24,7 @@ object AppModule {
         return Room.databaseBuilder(
             context,
             AppDataBase::class.java,
-            "QuantumSwapDb"
+            "QuantumSwapDbR"
         ).fallbackToDestructiveMigration().build()
     }
 

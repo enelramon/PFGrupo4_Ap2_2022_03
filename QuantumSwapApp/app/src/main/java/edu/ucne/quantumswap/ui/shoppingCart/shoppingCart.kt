@@ -79,7 +79,8 @@ fun shoppingCartMain(
         Column {
 
             ShoppingCart(
-                product = uiState.product
+                product = uiState.product,
+                modifier = Modifier.fillMaxSize().padding(it)
             )
 
         }
@@ -89,10 +90,11 @@ fun shoppingCartMain(
 @Composable
 fun ShoppingCart(
     product: List<Product>,
-    viewModel: ShoppingCartViewModel = hiltViewModel()
+    viewModel: ShoppingCartViewModel = hiltViewModel(),
+    modifier: Modifier = Modifier
 ) {
 
-    LazyColumn(modifier = Modifier.fillMaxSize()){
+    LazyColumn(modifier = modifier){
         items(product){Product ->
 
 
@@ -203,18 +205,16 @@ fun ShoppingCart(
                 }
 
             }
-
+            Divider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 4.dp)
+                    .border(1.dp, Color.White),
+                color = Color.White
+            )
         }
 
     }
-
-    Divider(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 4.dp)
-            .border(1.dp, Color.Black),
-        color = Color.White
-    )
 
 }
 

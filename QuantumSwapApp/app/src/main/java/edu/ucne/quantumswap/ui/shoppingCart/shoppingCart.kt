@@ -23,7 +23,10 @@ import coil.compose.AsyncImage
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.*
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.sp
 import edu.ucne.quantumswap.data.local.entity.Product
 
 
@@ -80,7 +83,9 @@ fun shoppingCartMain(
 
             ShoppingCart(
                 product = uiState.product,
-                modifier = Modifier.fillMaxSize().padding(it)
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(it)
             )
 
         }
@@ -106,6 +111,12 @@ fun ShoppingCart(
             ) {
                 Column(modifier = Modifier.padding(top = 10.dp, start = 3.dp)) {
 
+                    Text(
+                        "${Product.Description}",
+                        style = TextStyle(color = Color.Black, fontSize = 16.sp ),
+                        modifier = Modifier.padding(start = 120.dp)
+
+                    )
                     Row(modifier = Modifier.padding(0.dp, 0.dp)) {
 
 

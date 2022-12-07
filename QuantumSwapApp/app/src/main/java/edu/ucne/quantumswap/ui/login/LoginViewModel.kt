@@ -12,6 +12,7 @@ import edu.ucne.quantumswap.domain.Resource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @HiltViewModel
 class Loginviewmodel @Inject constructor(
     private val apiuser: UsersRepository
@@ -19,6 +20,8 @@ class Loginviewmodel @Inject constructor(
 
     var email by mutableStateOf("")
     var password by mutableStateOf("")
+    var auth by mutableStateOf(false)
+
 
     fun AuthUser(){
         viewModelScope.launch {
@@ -36,6 +39,7 @@ class Loginviewmodel @Inject constructor(
             }
         }
     }
+
 
 
 

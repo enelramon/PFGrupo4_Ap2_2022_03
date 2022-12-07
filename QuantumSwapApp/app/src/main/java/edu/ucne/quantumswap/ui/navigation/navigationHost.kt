@@ -18,14 +18,34 @@ fun navigationHost(
 
 
         composable(Home.route){
-            storeScreen(onClick = { navController.navigate(ShoppingCart.route) })
+            storeScreen { navController.navigate(ShoppingCart.route) }
         }
-        composable(LoginScreen.route){
-            login(onClick = {navController.navigate(Home.route)})
-        }
+
+//        composable(Home.route){
+//            storeScreen(onClick = { Price ->
+//                navController.navigate(ShoppingCart.route +
+//                "/$Price"
+//                )
+//            })
+//        }
         composable(ShoppingCart.route){
             shoppingCartMain()
         }
+
+//        composable(
+//            ShoppingCart.route + "/{Price}",
+//            arguments = listOf(navArgument("Price"){type = NavType.IntType})
+//        )
+//        {navBackStackEntry ->
+//            val Price = navBackStackEntry.arguments?.getInt("Price") ?: 0
+//            shoppingCartMain(Price)
+//        }
+
+
+        composable(LoginScreen.route){
+            login(onClick = {navController.navigate(Home.route)})
+        }
+
 
         composable(SignInScreen.route){
             signIn(onClick = { navController.navigate(LoginScreen.route) })
